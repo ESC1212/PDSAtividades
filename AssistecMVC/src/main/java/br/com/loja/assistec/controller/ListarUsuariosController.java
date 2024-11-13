@@ -1,5 +1,7 @@
 package br.com.loja.assistec.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -11,7 +13,32 @@ import br.com.loja.assistec.view.ListarUsuariosView;
 
 public class ListarUsuariosController {
 	LoginDAO LDAO = new LoginDAO();
-	ListarUsuariosView LUV = new ListarUsuariosView();
+	ListarUsuariosView LUV;
+	
+	private class ListarUsuariosListner implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String comando = e.getActionCommand();
+			switch (comando) {
+			case "BotaoCadastrarAction":
+				abrirCadastrarUsuario(null);
+				break;
+			case "BotaoFecharAction":
+				LUV.dispose();
+				break;
+			default:
+				break;
+			}
+		}
+
+		private void abrirCadastrarUsuario(Usuario usuarioSelecionado) {
+			// TODO Auto-generated method stub
+//			new CadastrarUsuarioController(this, usuarioSelecionado);
+		}
+		
+	}
 	
 	public void ListarUsuarios() throws SQLException {
 		ArrayList<Usuario> usuarios = LDAO.ListarUsuarios();
