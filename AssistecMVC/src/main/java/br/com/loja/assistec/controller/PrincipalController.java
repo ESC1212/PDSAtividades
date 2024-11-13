@@ -6,6 +6,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+import br.com.loja.assistec.view.ListarUsuariosView;
 import br.com.loja.assistec.view.MensagemView;
 import br.com.loja.assistec.view.PrincipalView;
 
@@ -65,7 +66,9 @@ public class PrincipalController {
 
 	// Abre a tela de listagem de usuários
 	private void abrirListagemUsuarios() {
-		//new ListarUsuarioController();
+		System.out.println("sexo");
+		new ListarUsuariosController();
+		new ListarUsuariosView();
 	}
 
 	// Exibe a mensagem de confirmação de saída e fecha o sistema se confirmado

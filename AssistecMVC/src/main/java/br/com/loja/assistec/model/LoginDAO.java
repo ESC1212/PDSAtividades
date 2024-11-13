@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class LoginDAO extends GenericDAO {
 
@@ -53,4 +54,28 @@ public class LoginDAO extends GenericDAO {
 		}
 
 	}
+	public ArrayList<Usuario> ListarUsuarios() {
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		String sql = "SELECT * FROM USUARIOS";
+		try {
+			Usuario usuario = null;
+			Connection con = conectarDAO();
+			PreparedStatement stmt = con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				usuario = new Usuario();
+				usuario.setIduser(rs.getInt("iduser"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setFone(rs.getString("fone"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setPerfil(rs.getString("perfil"));
+				usuarios.add(usuario);
+			}
+			
+		} catch (SQLException e) {
+		}
+		return usuarios;
+	}
+
 }
