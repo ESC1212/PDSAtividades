@@ -1,9 +1,6 @@
 package br.com.loja.assistec.view;
 
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -11,58 +8,65 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.TableRowSorter;
 
 import br.com.loja.assistec.model.Usuario;
 import br.com.loja.assistec.model.UsuarioTableModel;
-import net.miginfocom.swing.MigLayout;
 
 public class ListarUsuariosView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtLocalizar;
-	private JTable tabela;
-	private ArrayList<Usuario> usuariosList;
-	private UsuarioTableModel usuarioTableModel;
-	private JButton btnFechar;
 	private JButton btnCadastrar;
+	private JButton btnFechar;
+	private JTable tabela;
+	private UsuarioTableModel usuarioTableModel;
+	private TableRowSorter<UsuarioTableModel> rowSorter;
+	private JScrollPane scroolPane;
 
-	public ListarUsuariosView(){
-		usuariosList = new ArrayList<>();
-		
-		setTitle("Listagem de usuários");
-		setBounds(100, 100, 679, 506);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		getContentPane().setLayout(new MigLayout("", "[grow][grow][grow]", "[grow][grow][grow]"));
-		getContentPane().add(btnCadastrar, "cell 0 0,growx,aligny top");
-		
-		txtLocalizar = new JTextField();
-		getContentPane().add(txtLocalizar, "cell 1 0 2 1,growx,aligny center");
-		txtLocalizar.setColumns(10);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		getContentPane().add(scrollPane, "cell 0 1 3 1,grow");
-		
-		usuarioTableModel = new UsuarioTableModel(usuariosList);
-		tabela = new JTable();
-		tabela.setModel(usuarioTableModel);
-		scrollPane.setViewportView(tabela);
-		
-		btnFechar = new JButton("Fechar");
-		getContentPane().add(btnFechar, "cell 0 2 3 1,alignx center,aligny center");
-
-	}
-	public JTable getTable() {
-		return tabela;
-	}
-	public void addListarUsuariosListener(ActionListener listener) {
-		btnFechar.addActionListener(listener);
-		btnCadastrar.addActionListener(listener);
+	
+	public ListarUsuariosView() {
+		inicializarComponentes();
+		configurarJanela();
 	}
 	
-}
+	public void inicializarComponentes() {
+		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setActionCommand("BotaoCadastrarAction");
+		btnCadastrar.setBounds(39, 34, 103, 33);
+		
+		txtLocalizar = new JTextField();
+		txtLocalizar.setBounds(154, 34, 416, 33);
+		
+		btnFechar = new JButton("Fechar");
+		btnFechar.setActionCommand("BotaoFecharAction");
+		btnFechar.setBounds(269, 337, 89, 33);
+		
+		tabela = new JTable();
+		scroolPane = new JScrollPane(tabela);
+		scroolPane.setBounds(39,95,530,215);
+		
+		setLayout(null);
+		add(btnCadastrar);
+		add(btnFechar);
+		add(txtLocalizar);
+		add(scroolPane);
+	}
+	
+	public void configurarJanela() {
+		setTitle("Listagem de usuários");
+		setBounds(100, 100, 650, 420);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public void addListarUsuariosListener(ActionListener listener) {
+		btnCadastrar.addActionListener(listener);
+		btnFechar.addActionListener(listener);
+	}
+
+	public void mostrarUsuariosTabela(ArrayList<Usuario> listarUsuarios) {
+		usuarioTableModel = new UsuarioTableModel(listarUsuarios);
+		tabela.setModel(usuarioTableModel);
+	}
+	
+	}
