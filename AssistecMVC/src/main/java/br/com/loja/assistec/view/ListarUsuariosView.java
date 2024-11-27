@@ -62,7 +62,7 @@ public class ListarUsuariosView extends JFrame {
 	public void addListarUsuariosListener(ActionListener listener) {
 		btnCadastrar.addActionListener(listener);
 		btnFechar.addActionListener(listener);
-	}
+	}	
 
 	public void mostrarUsuariosTabela(ArrayList<Usuario> listarUsuarios) {
 		usuarioTableModel = new UsuarioTableModel(listarUsuarios);
