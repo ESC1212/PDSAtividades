@@ -73,9 +73,18 @@ public class CadastrarUsuarioController {
 				incluir(cadastrarView.getNome(), cadastrarView.getFone(), cadastrarView.getLogin(), cadastrarView.getSenha(), perfil);
 				new MensagemView("Registro inserido com sucesso!",3);
 				cadastrarView.dispose();
-				atualizarTabela();
+			} else {
+				Update(usuarioSelecionado.getIduser(), cadastrarView.getNome(), cadastrarView.getFone(), cadastrarView.getLogin(), cadastrarView.getSenha(), perfil);
+				cadastrarView.dispose();
+				new MensagemView("Usuario alterado!",3);
 			}
+			atualizarTabela();
 			
+		}
+
+		private void Update(long iduser, String nome, String fone, String login, String senha, String perfil) throws SQLException {
+			Usuario usuario = new Usuario(iduser, nome, fone, login, senha, perfil);
+			new UsuarioDAO().alterar(usuario);			
 		}
 
 		private void incluir(String nome, String fone, String login, String senha, String perfil) throws SQLException {
