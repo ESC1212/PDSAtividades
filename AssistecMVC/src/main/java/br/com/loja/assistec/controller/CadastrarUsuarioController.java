@@ -8,28 +8,28 @@ import br.com.loja.assistec.view.CadastrarUsuariosView;
 
 public class CadastrarUsuarioController {
 	private CadastrarUsuariosView cadastrarView;
-	private ListarUsuariosController LUC;
+	private ListarUsuarioController listarController;
 	private Usuario usuarioSelecionado;
 	
-	public CadastrarUsuarioController(ListarUsuariosController LUC, Usuario user) {
-				this.usuarioSelecionado = user;
-				this.LUC = LUC;
-				cadastrarView = new CadastrarUsuariosView(user);
-				cadastrarView.setLocationRelativeTo(null);
-				cadastrarView.setVisible(true);
-				configurarListeners();
+	public CadastrarUsuarioController(
+			ListarUsuarioController listarUsuariosController,
+			Usuario user) {
+		this.usuarioSelecionado = user;
+		this.listarController = listarUsuariosController;
+		cadastrarView = new CadastrarUsuariosView(user);
+		cadastrarView.setLocationRelativeTo(null);
+		cadastrarView.setVisible(true);
+		configurarListeners();
 	}
 
 	private void configurarListeners() {
-		CadastrarUsuariosView cadastrarUsuariosView = new CadastrarUsuariosView(null);
-		// TODO Auto-generated method stub
-		cadastrarUsuariosView.addCadastrarUsuariosListener(new CadastrarUsuariosListener());
+		cadastrarView.addCadastrarUsuariosListener(new CadastrarUsuariosListener());
 	}
+	
 	private class CadastrarUsuariosListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
 			switch(e.getActionCommand()) {
 			case "BotaoFecharAction":
 				cadastrarView.dispose();
@@ -39,6 +39,9 @@ public class CadastrarUsuarioController {
 				break;
 			case "BotaoIncluirAction":
 //				metodoAlterarOuIncluir();
+				break;
+			default:
+				break;
 			}
 		}
 		

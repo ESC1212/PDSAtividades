@@ -1,6 +1,7 @@
 package br.com.loja.assistec.view;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -8,7 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.TableRowSorter;
+//import javax.swing.table.TableRowSorter;
+//import br.com.loja.assistec.model.UsuarioTableModel;
 
 import br.com.loja.assistec.model.Usuario;
 import br.com.loja.assistec.model.UsuarioTableModel;
@@ -21,7 +23,7 @@ public class ListarUsuariosView extends JFrame {
 	private JButton btnFechar;
 	private JTable tabela;
 	private UsuarioTableModel usuarioTableModel;
-	private TableRowSorter<UsuarioTableModel> rowSorter;
+//	private TableRowSorter<UsuarioTableModel> rowSorter;
 	private JScrollPane scroolPane;
 
 	
@@ -62,11 +64,25 @@ public class ListarUsuariosView extends JFrame {
 	public void addListarUsuariosListener(ActionListener listener) {
 		btnCadastrar.addActionListener(listener);
 		btnFechar.addActionListener(listener);
-	}	
+	}
 
-	public void mostrarUsuariosTabela(ArrayList<Usuario> listarUsuarios) {
-		usuarioTableModel = new UsuarioTableModel(listarUsuarios);
+	public void mostrarUsuariosTabela(ArrayList<Usuario> listaUsuarios) {
+		usuarioTableModel = new UsuarioTableModel(listaUsuarios);
 		tabela.setModel(usuarioTableModel);
 	}
+	
+	//Adiciona um listener para os eventos do clique na tabela
+	public void addTabelaMouseListener(MouseListener listener) {
+		tabela.addMouseListener(listener);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	}
