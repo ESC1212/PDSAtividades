@@ -53,7 +53,24 @@ public class ListarUsuarioController {
 		public void mouseClicked(MouseEvent e) {
 			if (e.getButton() == MouseEvent.BUTTON1) {
 				//Selecionar o usuario
-				System.out.println("clicado no botao esquerdo do mouse");
+				int linha = listarView.getLinha();
+				Long idUser = (Long) listarView.getIdUser(linha, 0);
+				try{
+					Usuario usuarioSelecionado = buscarUserById(idUser);
+					abrirCadastroUsuario(usuarioSelecionado);
+				} catch (Exception e1) {
+					new MensagemView("Erro ao cadastrar usuario", 1);
+				}
+			}
+		}
+
+		private Usuario buscarUserById(Long idUser) {
+			UsuarioDAO dao = new UsuarioDAO();
+			try {
+				return dao.selecionarUsuario(idUser);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
 			}
 		}
 	}

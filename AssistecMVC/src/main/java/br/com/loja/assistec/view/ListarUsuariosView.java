@@ -75,7 +75,14 @@ public class ListarUsuariosView extends JFrame {
 	public void addTabelaMouseListener(MouseListener listener) {
 		tabela.addMouseListener(listener);
 	}
-	
+
+	public int getLinha() {
+		return tabela.getSelectedRow();
+	}
+
+	public Object getIdUser(int linha, int i) {
+		return tabela.getValueAt(linha, i);
+	}
 	
 	
 	
