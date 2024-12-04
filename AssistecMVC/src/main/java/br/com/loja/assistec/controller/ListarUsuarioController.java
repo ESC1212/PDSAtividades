@@ -107,4 +107,8 @@ public class ListarUsuarioController {
 			}
 		}
 	}
+
+	public void atualizarTabela(ArrayList<Usuario> novosUsuarios) {
+		listarView.atualizarTabelaUsuarios(novosUsuarios);		
+	}
 }

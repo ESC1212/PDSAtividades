@@ -119,9 +119,9 @@ public class CadastrarUsuariosView extends JFrame {
         return txtFone.getText();
     }
 
-
-
-
+	public Object getPerfilSelecionado() {
+		return cbPerfil.getSelectedItem();
+	}
 }
 
 

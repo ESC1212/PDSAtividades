@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 public class MensagemView extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private int resposta;
+	private boolean resposta;
 
 	public MensagemView(String mensagem, int tipo) {
 		setTitle("Mensagem");
@@ -108,7 +108,7 @@ public class MensagemView extends JDialog {
 		btnSim.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				resposta = 1;
+				resposta = true;
 				setVisible(false);
 			}
 		});
@@ -121,7 +121,7 @@ public class MensagemView extends JDialog {
 		btnNao.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				resposta = 0;
+				resposta = false;
 				setVisible(false);
 			}
 		});
@@ -138,7 +138,7 @@ public class MensagemView extends JDialog {
 
 	}
 
-	public int getResposta() {
+	public boolean getResposta() {
 		return resposta;
 	}
 }
