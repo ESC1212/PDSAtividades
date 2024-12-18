@@ -78,8 +78,7 @@ public class PrincipalController {
 	private void sairDoSistema() {
 //		int confirmacao = principalView.confirmarFecharSistema();
 		MensagemView mv = new MensagemView("Tem certeza que deseja sair?");
-		int confirmacao = mv.getResposta();
-		if (confirmacao == 1) {
+		if (mv.getResposta()) {
 			System.exit(0);
 		}
 	}
